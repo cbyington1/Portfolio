@@ -9,14 +9,22 @@ import Experience from './components/sections/Experience';
 import Contact from './components/sections/Contact';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('about');
-  const navigationItems = ['about', 'skills', 'experience', 'projects', 'contact'];
+  const [activeSection, setActiveSection] = useState('hero'); // Changed initial state to 'hero'
+  const [showParticleControls, setShowParticleControls] = useState(false);
+  const navigationItems = ['about', 'skills', 'experience', 'projects', 'contact']; // Added 'hero' to navigation items
+  
+  const [particleSettings, setParticleSettings] = useState({
+    particleCount: 150,
+    colorMode: 'blue',
+    connectionDistance: 100,
+    particleSpeed: 0.5
+  });
 
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '-50% 0px',
-      threshold: 0
+      rootMargin: '-40% 0px', // Adjusted rootMargin for better accuracy
+      threshold: 0.1 // Added small threshold for better detection
     };
 
     const callback = (entries) => {
@@ -29,10 +37,17 @@ function App() {
 
     const observer = new IntersectionObserver(callback, options);
 
-    navigationItems.forEach(item => {
-      const element = document.getElementById(item);
-      if (element) observer.observe(element);
-    });
+    // Slight delay to ensure all elements are rendered
+    setTimeout(() => {
+      navigationItems.forEach(item => {
+        const element = document.getElementById(item);
+        if (element) {
+          observer.observe(element);
+        } else {
+          console.warn(`Element with id "${item}" not found`);
+        }
+      });
+    }, 100);
 
     return () => {
       navigationItems.forEach(item => {
@@ -44,23 +59,44 @@ function App() {
 
   return (
     <>
-      <ParticleBackground />
-      {/* Remove the full-screen div wrapper and only wrap the actual content */}
+      <ParticleBackground settings={particleSettings} />
+      
+      {/* Main content container */}
       <div className="relative z-10">
+        {/* Navigation is outside the transition container */}
         <Navigation
           activeSection={activeSection}
           setActiveSection={setActiveSection}
           navigationItems={navigationItems}
         />
-        <main className="text-white">
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Contact />
-        </main>
+        
+        {/* Content container with transitions */}
+        <div className={`transition-all duration-500 ease-in-out ${showParticleControls ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'}`}>
+          <main className="text-white">
+            <Hero
+              particleSettings={particleSettings}
+              setParticleSettings={setParticleSettings}
+              showControls={showParticleControls}
+              setShowControls={setShowParticleControls}
+              contentOnly={true}
+            />
+            <About />
+            <Skills />
+            <Experience />
+            <Projects />
+            <Contact />
+          </main>
+        </div>
       </div>
+
+      {/* Particle controls */}
+      <Hero
+        particleSettings={particleSettings}
+        setParticleSettings={setParticleSettings}
+        showControls={showParticleControls}
+        setShowControls={setShowParticleControls}
+        controlsOnly={true}
+      />
     </>
   );
 }
