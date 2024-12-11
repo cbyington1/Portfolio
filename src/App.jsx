@@ -9,9 +9,9 @@ import Experience from './components/sections/Experience';
 import Contact from './components/sections/Contact';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('hero'); // Changed initial state to 'hero'
+  const [activeSection, setActiveSection] = useState('hero');
   const [showParticleControls, setShowParticleControls] = useState(false);
-  const navigationItems = ['about', 'skills', 'experience', 'projects', 'contact']; // Added 'hero' to navigation items
+  const navigationItems = ['about', 'skills', 'experience', 'projects', 'contact'];
   
   const [particleSettings, setParticleSettings] = useState({
     particleCount: 150,
@@ -23,8 +23,8 @@ function App() {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '-40% 0px', // Adjusted rootMargin for better accuracy
-      threshold: 0.1 // Added small threshold for better detection
+      rootMargin: '-40% 0px',
+      threshold: 0.1
     };
 
     const callback = (entries) => {
@@ -37,9 +37,11 @@ function App() {
 
     const observer = new IntersectionObserver(callback, options);
 
-    // Slight delay to ensure all elements are rendered
+    // Add hero to the sections to observe, but don't include it in navigation
+    const sectionsToObserve = ['hero', ...navigationItems];
+
     setTimeout(() => {
-      navigationItems.forEach(item => {
+      sectionsToObserve.forEach(item => {
         const element = document.getElementById(item);
         if (element) {
           observer.observe(element);
@@ -50,7 +52,7 @@ function App() {
     }, 100);
 
     return () => {
-      navigationItems.forEach(item => {
+      sectionsToObserve.forEach(item => {
         const element = document.getElementById(item);
         if (element) observer.unobserve(element);
       });
@@ -74,6 +76,7 @@ function App() {
         <div className={`transition-all duration-500 ease-in-out ${showParticleControls ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'}`}>
           <main className="text-white">
             <Hero
+              id="hero"
               particleSettings={particleSettings}
               setParticleSettings={setParticleSettings}
               showControls={showParticleControls}

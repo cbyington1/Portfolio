@@ -14,14 +14,14 @@ const Navigation = ({ activeSection, setActiveSection, navigationItems }) => {
               }}
               className={`
                 relative px-4 py-2 rounded-full transition-all duration-300 capitalize
-                ${activeSection === section 
+                ${activeSection === section && activeSection !== 'hero'
                   ? 'text-white bg-blue-500/20'
                   : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
                 }
               `}
             >
               {/* Active section indicator */}
-              {activeSection === section && (
+              {activeSection === section && activeSection !== 'hero' && (
                 <span 
                   className="absolute inset-0 rounded-full bg-blue-500/20 animate-scale-up"
                   aria-hidden="true"
