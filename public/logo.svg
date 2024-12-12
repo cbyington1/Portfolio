@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Front face vertices (larger circles) -->
+  <circle cx="25" cy="25" r="3.5" fill="#4A90E2"/>
+  <circle cx="75" cy="25" r="3.5" fill="#4A90E2"/>
+  <circle cx="25" cy="75" r="3.5" fill="#4A90E2"/>
+  <circle cx="75" cy="75" r="3.5" fill="#4A90E2"/>
+  
+  <!-- Back face vertices -->
+  <circle cx="40" cy="10" r="3.5" fill="#4A90E2"/>
+  <circle cx="90" cy="10" r="3.5" fill="#4A90E2"/>
+  <circle cx="40" cy="60" r="3.5" fill="#4A90E2"/>
+  <circle cx="90" cy="60" r="3.5" fill="#4A90E2"/>
+  
+  <!-- Front face connections (thicker, more opaque) -->
+  <path d="M25 25 L75 25" stroke="#4A90E2" stroke-width="2" opacity="0.9"/>
+  <path d="M25 25 L25 75" stroke="#4A90E2" stroke-width="2" opacity="0.9"/>
+  <path d="M75 25 L75 75" stroke="#4A90E2" stroke-width="2" opacity="0.9"/>
+  <path d="M25 75 L75 75" stroke="#4A90E2" stroke-width="2" opacity="0.9"/>
+  
+  <!-- Back face connections -->
+  <path d="M40 10 L90 10" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <path d="M40 10 L40 60" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <path d="M90 10 L90 60" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <path d="M40 60 L90 60" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Connecting edges between faces -->
+  <path d="M25 25 L40 10" stroke="#4A90E2" stroke-width="2" opacity="0.8"/>
+  <path d="M75 25 L90 10" stroke="#4A90E2" stroke-width="2" opacity="0.8"/>
+  <path d="M25 75 L40 60" stroke="#4A90E2" stroke-width="2" opacity="0.8"/>
+  <path d="M75 75 L90 60" stroke="#4A90E2" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Additional particles with glow effect -->
+  <circle cx="50" cy="35" r="2" fill="#4A90E2" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="65" cy="45" r="2" fill="#4A90E2" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="35" cy="50" r="2" fill="#4A90E2" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Additional connections with pulse effect -->
+  <path d="M50 35 L65 45" stroke="#4A90E2" stroke-width="1.5" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M65 45 L35 50" stroke="#4A90E2" stroke-width="1.5" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="2.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M35 50 L50 35" stroke="#4A90E2" stroke-width="1.5" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+</svg>
