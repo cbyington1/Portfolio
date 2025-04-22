@@ -2,7 +2,7 @@
 export const experienceData = [
     {
       company: "Germer Beaman & Brown PLLC",
-      position: "Network Administrator Intern",
+      position: "Software Engineer Intern",
       duration: "June 2023 - August 2023",
       description: "Developed automation solutions for document management while maintaining network infrastructure for a law firm.",
       achievements: [

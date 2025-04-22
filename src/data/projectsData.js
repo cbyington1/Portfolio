@@ -74,5 +74,17 @@ export const projectsData = [
     type: "Backend",
     date: "2022",
     github: "https://github.com/yourusername/leap-algorithm"
+  },
+  {
+    id: 8,
+    title: "NHL Predictor",
+    description: "A data-driven NHL game prediction application that forecasts game outcomes with visual presentation of prediction confidence and key factors.",
+    longDescription: "Built with React, React Native, and Expo, this full-stack application uses real-time NHL data and custom algorithms to predict game outcomes. Features include win probability visualization, detailed prediction factor breakdowns, game browsing by date, team performance metrics, and prediction accuracy tracking. The backend uses Express, Prisma, and MongoDB to manage data and statistical analysis.",
+    tags: ["React", "React Native", "Expo", "Redux", "Express", "Prisma", "MongoDB", "TailwindCSS", "Data Visualization"],
+    type: "Full Stack",
+    date: "2025",
+    github: "https://github.com/yourusername/nhl-predictor",
+    demo: "https://nhl-predictor.vercel.app/",
+    highlight: true
   }
 ];

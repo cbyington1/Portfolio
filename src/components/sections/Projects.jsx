@@ -56,6 +56,13 @@ const Projects = () => {
       githubLink: "https://github.com/cbyington1/CometScraper"
     },
     {
+      title: "NHL Predictor",
+      description: "A data-driven NHL game prediction application that forecasts game outcomes with visual presentation of prediction confidence and key factors.",
+      tags: ["React", "React Native", "Expo", "Express", "Prisma", "PostgreSQL", "Data Visualization"],
+      link: "https://nhl-predictor.up.railway.app/",
+      githubLink: "https://github.com/cbyington1/nhl-predictor"
+    },
+    {
       title: "Keyboard Trumpet",
       description: "Interactive web-based trumpet simulator with realistic valve combinations, visual feedback, and audio output.",
       tags: ["Angular", "Web Audio API", "Frontend"],
