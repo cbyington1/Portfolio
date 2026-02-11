@@ -3,9 +3,179 @@
 @tailwind utilities;
 
 html {
-  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply bg-stone-50 text-slate-900 antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar Styles */
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color, rgba(100, 116, 139, 0.5));
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover-color, rgba(100, 116, 139, 0.8));
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color, rgba(100, 116, 139, 0.5)) transparent;
+}
+
+/* Prevent layout shifts and jitter */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lock down mobile rendering */
+@media (max-width: 768px) {
+  * {
+    will-change: auto !important;
+  }
+  
+  body {
+    overscroll-behavior-y: none;
+  }
+  
+  /* Use fixed pixel height on mobile to prevent vh jitter from address bar */
+  #hero {
+    min-height: 600px !important;
+    padding-top: 140px !important;
+    padding-bottom: 16px !important;
+  }
+}
+
+/* Rainbow border - special handling for 8 colors with seamless loop */
+.animated-gradient-border.rainbow-border {
+  background: 
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(
+      90deg,
+      /* First loop: 0-50% */
+      rgb(var(--grad-0)) 0%,
+      rgb(var(--grad-1)) 7.14%,
+      rgb(var(--grad-2)) 14.28%,
+      rgb(var(--grad-3)) 21.42%,
+      rgb(var(--grad-4)) 28.56%,
+      rgb(var(--grad-5)) 35.7%,
+      rgb(var(--grad-6)) 42.84%,
+      rgb(var(--grad-7)) 50%,
+      /* Second loop: 50-100% (same colors repeat) */
+      rgb(var(--grad-0)) 50%,
+      rgb(var(--grad-1)) 57.14%,
+      rgb(var(--grad-2)) 64.28%,
+      rgb(var(--grad-3)) 71.42%,
+      rgb(var(--grad-4)) 78.56%,
+      rgb(var(--grad-5)) 85.7%,
+      rgb(var(--grad-6)) 92.84%,
+      rgb(var(--grad-0)) 100%
+    ) border-box;
+  background-size: 100% 100%, 200% 200%;
+}
+
+.static-gradient-border.rainbow-border {
+  background: 
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(
+      90deg,
+      rgb(var(--grad-0)) 0%,
+      rgb(var(--grad-1)) 12.5%,
+      rgb(var(--grad-2)) 25%,
+      rgb(var(--grad-3)) 37.5%,
+      rgb(var(--grad-4)) 50%,
+      rgb(var(--grad-5)) 62.5%,
+      rgb(var(--grad-6)) 75%,
+      rgb(var(--grad-7)) 87.5%,
+      rgb(var(--grad-0)) 100%
+    ) border-box;
+  background-size: 100% 100%, 100% 100%;
+}
+
+/* Unified animated gradient border - ONE class for all modes */
+.animated-gradient-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(
+      90deg,
+      rgb(var(--grad-0)) 0%,
+      rgb(var(--grad-1)) 12.5%,
+      rgb(var(--grad-2)) 25%,
+      rgb(var(--grad-3)) 37.5%,
+      rgb(var(--grad-4)) 50%,
+      rgb(var(--grad-5)) 62.5%,
+      rgb(var(--grad-6)) 75%,
+      rgb(var(--grad-7)) 87.5%,
+      rgb(var(--grad-8)) 100%
+    ) border-box;
+  background-size: 100% 100%, var(--gradient-bg-size, 200%) 200%;
+  animation: rotateBorder var(--animation-speed, 30s) linear infinite;
+  transition: background 0.3s ease;
+}
+
+/* Unified static gradient border - paused version */
+.static-gradient-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(
+      90deg,
+      rgb(var(--grad-0)) 0%,
+      rgb(var(--grad-1)) 12.5%,
+      rgb(var(--grad-2)) 25%,
+      rgb(var(--grad-3)) 37.5%,
+      rgb(var(--grad-4)) 50%,
+      rgb(var(--grad-5)) 62.5%,
+      rgb(var(--grad-6)) 75%,
+      rgb(var(--grad-7)) 87.5%,
+      rgb(var(--grad-8)) 100%
+    ) border-box;
+  background-size: 100% 100%, var(--gradient-bg-size, 200%) 200%;
+  animation: rotateBorder var(--animation-speed, 30s) linear infinite;
+  animation-play-state: paused;
+  transition: background 0.3s ease;
+}
+
+@keyframes rotateBorder {
+  0% {
+    background-position: 0% 0%, 0% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 200% 50%;
+  }
+}
+
+/* Shake animation for disabled demo buttons */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Project carousel - allow hover effects to overflow vertically but clip horizontal scroll */
+.overflow-x-clip {
+  overflow-x: clip;
+  overflow-y: visible;
 }
