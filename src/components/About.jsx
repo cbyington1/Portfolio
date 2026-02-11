@@ -79,6 +79,8 @@ function About() {
                       src={tech.icon} 
                       alt={tech.name}
                       className={`w-full h-full object-contain ${
+                        customTheme === 'monochrome' ? 'grayscale' : ''
+                      } ${
                         // Invert icons that don't show well in dark mode
                         mode === 'dark' && ['Express', 'Next.js', 'Flask'].includes(tech.name) 
                           ? 'invert' 
