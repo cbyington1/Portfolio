@@ -86,7 +86,7 @@ function Projects() {
       demo: "https://gdpulse-ten.vercel.app/",
       featured: true,
       desktopOnly: false,
-      wakeUpUrl: "https://koan39-gdpulse.hf.space/"
+      wakeUpUrl: "https://gdpulse-api-production.up.railway.app/health"
     },
     {
       id: 2,
@@ -117,7 +117,7 @@ function Projects() {
       image: "/Portfolio/CometScraperProjectScreenshot.png",
       tags: ["React", "Sentiment Analysis", "Yahoo Finance API"],
       github: "https://github.com/cbyington1/CometScraper",
-      demo: "https://comet-scraper.vercel.app/",
+      demo: "https://comet-scraper-pi.vercel.app/",
       featured: false,
       desktopOnly: true
     }
